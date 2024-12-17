@@ -10,7 +10,7 @@ html {
 #calculator {
     height: 510px;
     width: 400px;
-    box-sizing: content-box;
+    box-sizing: border-box;
     border: 2px solid black;
     padding: 5px;
     border-radius: 5px;
@@ -20,13 +20,20 @@ html {
 }
 #result-bar {
     flex-basis: 25%;
+    flex-grow: 1;
+    flex-wrap: none;
     background-color: beige;
     border: 1px solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
+
 .row {
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
+    flex-grow: 0;
     flex-basis: 16.66%;
     gap: 2px;
 }
@@ -45,13 +52,8 @@ text {
     flex-basis: calc(50% + 4px); 
 }
 
-#result-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-end;
-}
-
 #result {
     font-size:70px;
+    overflow-x: scroll;
+    white-space: nowrap;
 }
