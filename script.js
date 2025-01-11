@@ -185,6 +185,90 @@ buttons.forEach((button) => {
     });
 });
 
+document.addEventListener("keydown", function(e) {
+
+        if(e.key >= 0) {
+            nums.push(e.key);
+            result.textContent = nums.join('');
+        }
+
+        if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && !arr[1]) {
+            if (nums.length > 0) {
+                let operand = parseFloat(result.textContent);
+                if (!isNaN(operand)) {
+                    arr.push(operand);
+                    console.log(arr);
+                }
+                nums = [];
+            }
+
+        }
+
+        if ((e.key === "=" ||e.key === "Enter") && arr[0]) {
+            //Enter button not working
+            if (nums.length > 0) {
+                let operand = parseFloat(result.textContent);
+                if (!isNaN(operand)) {
+                    arr.push(operand);
+                    console.log(arr);
+                    result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
+                    arr.splice(0,3, parseFloat(result.textContent));
+                }
+                nums = []; 
+            }
+            e.preventDefault();
+        }
+
+        if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && arr[1]) {
+            if (nums.length > 0) {
+                let operand = parseFloat(result.textContent);
+                if (!isNaN(operand)) {
+                    arr.push(operand);
+                    console.log(arr);
+                    result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
+                    arr.splice(0,3, parseFloat(result.textContent));
+                    arr.push(e.key);
+                }
+                nums = []; 
+            }
+        }
+
+        if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && arr[0] && !arr[1]){
+            arr.push(e.key);
+        }        
+
+        if (e.key >= 0 && arr[0] && !arr[1]) {
+            arr = [];
+        }
+
+        if (e.key === 'Escape') {
+            arr = [];
+            nums = [];
+            result.textContent = 0;
+        }
+
+
+        if (e.key === ".") {
+            if (nums.includes(".")) {;}
+            else nums.push(".");
+
+            if (result.textContent.includes(".")) {;}
+            else result.textContent += ".";
+        }
+
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+            if (nums.length > 0) {
+                nums.pop();
+                result.textContent = nums.join('');
+            }
+                if (!nums[0]) {
+                result.textContent = 0;
+                }
+            
+        }
+
+    });
+
 
 
 
