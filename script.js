@@ -14,9 +14,6 @@ const divide = function (a, b) {
     return a / b;
 }
 
-let num1;
-let operator;
-let num2;
 
 const operate = function (num1, operator, num2) {
     let result;
@@ -39,48 +36,20 @@ const resultBar = document.querySelector("#result-bar");
 
 const result = document.createElement("text");
 result.setAttribute("id", "result");
-result.textContent = 0;
+result.textContent = '';
 resultBar.appendChild(result);
 
 const buttons = document.querySelectorAll("button");
 let arr = [];
-
-// buttons.forEach((button) => {
-
-//     button.addEventListener("click", () => {
-//         if (button.className = "num") {
-//             let display1 = result.textContent;
-//             display1 += parseInt(button.textContent);
-//             let number = parseInt(display1);
-//             result.textContent = number;
-            
-//             if (button.id === "divide" && number) {
-//                 let operand = number;
-//                 arr.push(operand);
-//                 console.log(arr);
-
-//                 if (button.className = "num" && operand) {
-//                     result.textContent = number;
-                    
-                    
-//                 }
-//             }
-//             // else if (button.id === "plus") {}
-
-//         }
-//     })
-// });
 let nums = [];
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        // Handle number buttons
         if (button.classList.contains("num") ) {
             nums.push(button.textContent);
             result.textContent = nums.join('');
         }
 
-        // Handle the divide button
         if (button.classList.contains("operator") && !arr[1]) {
             if (nums.length > 0) {
                 let operand = parseFloat(result.textContent);
@@ -89,9 +58,8 @@ buttons.forEach((button) => {
                     arr.push(button.textContent);
                     console.log(arr);
                 }
-                nums = []; // Clear nums after processing
+                nums = [];
             }
-
         }
 
         if (button.classList.contains("equals") && arr[0]) {
@@ -103,7 +71,7 @@ buttons.forEach((button) => {
                     result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
                     arr.splice(0,3, parseFloat(result.textContent));
                 }
-                nums = []; // Clear nums after processing
+                nums = [];
             }
         }
 
@@ -117,7 +85,7 @@ buttons.forEach((button) => {
                     arr.splice(0,3, parseFloat(result.textContent));
                     arr.push(button.textContent);
                 }
-                nums = []; // Clear nums after processing
+                nums = [];
             }
         }
 
@@ -133,7 +101,7 @@ buttons.forEach((button) => {
         if (button.classList.contains("clear")) {
             arr = [];
             nums = [];
-            result.textContent = 0;
+            result.textContent = '';
         }
 
         if (result.textContent == Infinity) {
@@ -152,10 +120,10 @@ buttons.forEach((button) => {
         if (button.classList.contains("backspace")) {
             if (nums.length > 0) {
                 nums.pop();
+                result.textContent = nums.join('');
                 if (!nums[0]) {
-                result.textContent = 0;
+                result.textContent = '';
                 }
-                // else result.textContent = 0;
             }
         }
 
@@ -185,89 +153,129 @@ buttons.forEach((button) => {
     });
 });
 
-document.addEventListener("keydown", function(e) {
+// document.addEventListener("keydown", function(e) {
 
-        if(e.key >= 0) {
-            nums.push(e.key);
-            result.textContent = nums.join('');
-        }
+//         if(e.key >= 0) {
+//             nums.push(e.key);
+//             result.textContent = nums.join('');
+//         }
 
-        if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && !arr[1]) {
-            if (nums.length > 0) {
-                let operand = parseFloat(result.textContent);
-                if (!isNaN(operand)) {
-                    arr.push(operand);
-                    console.log(arr);
-                }
-                nums = [];
-            }
+//         if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && !arr[1]) {
+//             if (nums.length > 0) {
+//                 let operand = parseFloat(result.textContent);
+//                 if (!isNaN(operand)) {
+//                     arr.push(operand);
+//                     console.log(arr);
+//                 }
+//                 nums = [];
+//             }
 
-        }
+//         }
 
-        if ((e.key === "=" ||e.key === "Enter") && arr[0]) {
-            //Enter button not working
-            if (nums.length > 0) {
-                let operand = parseFloat(result.textContent);
-                if (!isNaN(operand)) {
-                    arr.push(operand);
-                    console.log(arr);
-                    result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
-                    arr.splice(0,3, parseFloat(result.textContent));
-                }
-                nums = []; 
-            }
+//         if ((e.key === "=" ||e.key === "Enter") && arr[0]) {
+//             //Enter button not working
+//             if (nums.length > 0) {
+//                 let operand = parseFloat(result.textContent);
+//                 if (!isNaN(operand)) {
+//                     arr.push(operand);
+//                     console.log(arr);
+//                     result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
+//                     arr.splice(0,3, parseFloat(result.textContent));
+//                 }
+//                 nums = []; 
+//             }
+//             e.preventDefault();
+//         }
+
+//         if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && arr[1]) {
+//             if (nums.length > 0) {
+//                 let operand = parseFloat(result.textContent);
+//                 if (!isNaN(operand)) {
+//                     arr.push(operand);
+//                     console.log(arr);
+//                     result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
+//                     arr.splice(0,3, parseFloat(result.textContent));
+//                     arr.push(e.key);
+//                 }
+//                 nums = []; 
+//             }
+//         }
+
+//         if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && arr[0] && !arr[1]){
+//             arr.push(e.key);
+//         }        
+
+//         if (e.key >= 0 && arr[0] && !arr[1]) {
+//             arr = [];
+//         }
+
+//         if (e.key === 'Escape') {
+//             arr = [];
+//             nums = [];
+//             result.textContent = 0;
+//         }
+
+
+//         if (e.key === ".") {
+//             if (nums.includes(".")) {;}
+//             else nums.push(".");
+
+//             if (result.textContent.includes(".")) {;}
+//             else result.textContent += ".";
+//         }
+
+//         if (e.key === 'Backspace' || e.key === 'Delete') {
+//             if (nums.length > 0) {
+//                 nums.pop();
+//                 result.textContent = nums.join('');
+//             }
+//                 if (!nums[0]) {
+//                 result.textContent = 0;
+//                 }
+            
+//         }
+
+//     });
+
+document.addEventListener('keydown', function(e) {
+    const keyMap = {
+        '0': 'btn-0',
+        '1': 'btn-1',
+        '2': 'btn-2',
+        '3': 'btn-3',
+        '4': 'btn-4',
+        '5': 'btn-5',
+        '6': 'btn-6',
+        '7': 'btn-7',
+        '8': 'btn-8',
+        '9': 'btn-9',
+        '+': 'btn-add',
+        '-': 'btn-subtract',
+        '*': 'btn-multiply',
+        '/': 'btn-divide',
+        '=': 'btn-equals',
+        'Enter': 'btn-equals',
+        'Escape': 'btn-clear',
+        'Backspace': 'btn-backspace',
+        'Delete': 'btn-backspace',
+        '.': 'btn-point'
+    };
+
+    const buttonId = keyMap[e.key];
+    if (buttonId) {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            button.classList.add('active');
+            setTimeout(() => {
+                button.classList.remove('active');
+            }, 150);
+
+            button.click(); 
             e.preventDefault();
         }
+    }
+});
 
-        if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && arr[1]) {
-            if (nums.length > 0) {
-                let operand = parseFloat(result.textContent);
-                if (!isNaN(operand)) {
-                    arr.push(operand);
-                    console.log(arr);
-                    result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
-                    arr.splice(0,3, parseFloat(result.textContent));
-                    arr.push(e.key);
-                }
-                nums = []; 
-            }
-        }
-
-        if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && arr[0] && !arr[1]){
-            arr.push(e.key);
-        }        
-
-        if (e.key >= 0 && arr[0] && !arr[1]) {
-            arr = [];
-        }
-
-        if (e.key === 'Escape') {
-            arr = [];
-            nums = [];
-            result.textContent = 0;
-        }
-
-
-        if (e.key === ".") {
-            if (nums.includes(".")) {;}
-            else nums.push(".");
-
-            if (result.textContent.includes(".")) {;}
-            else result.textContent += ".";
-        }
-
-        if (e.key === 'Backspace' || e.key === 'Delete') {
-            if (nums.length > 0) {
-                nums.pop();
-                result.textContent = nums.join('');
-            }
-                if (!nums[0]) {
-                result.textContent = 0;
-                }
-            
-        }
-
-    });
 
 
 
