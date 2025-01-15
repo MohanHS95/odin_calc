@@ -95,7 +95,6 @@ buttons.forEach((button) => {
 
         if (button.classList.contains("num") && arr[0] && !arr[1]) {
             arr = [];
-            // result.textContent = nums.join('');
         }
 
         if (button.classList.contains("clear")) {
@@ -126,116 +125,8 @@ buttons.forEach((button) => {
                 }
             }
         }
-
-        // if (button.classList.contains("plusminus")) {
-        //     if (arr.length > 0) {
-        //         arr[0] = arr[0] * (-1);
-        //         result.textContent = arr[0];
-                
-        //     }
-        //     else result.textContent = nums.join('') * (-1);
-        //     // console.log(nums);
-        //     // nums.splice(0,nums.length,result.textContent);
-        //     // console.log(nums);
-        //     // console.log(arr);
-        //             // nums.push(result.textContent);
-
-        // }
-
-        // if (button.classList.contains("percent")) {
-        //     if(arr.length > 0 && !arr[1]) {
-        //         arr[0] = arr[0]/100;
-        //         result.textContent = arr[0];
-        //     }
-        //     else result.textContent = result.textContent / 100
-        // }
-
     });
 });
-
-// document.addEventListener("keydown", function(e) {
-
-//         if(e.key >= 0) {
-//             nums.push(e.key);
-//             result.textContent = nums.join('');
-//         }
-
-//         if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && !arr[1]) {
-//             if (nums.length > 0) {
-//                 let operand = parseFloat(result.textContent);
-//                 if (!isNaN(operand)) {
-//                     arr.push(operand);
-//                     console.log(arr);
-//                 }
-//                 nums = [];
-//             }
-
-//         }
-
-//         if ((e.key === "=" ||e.key === "Enter") && arr[0]) {
-//             //Enter button not working
-//             if (nums.length > 0) {
-//                 let operand = parseFloat(result.textContent);
-//                 if (!isNaN(operand)) {
-//                     arr.push(operand);
-//                     console.log(arr);
-//                     result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
-//                     arr.splice(0,3, parseFloat(result.textContent));
-//                 }
-//                 nums = []; 
-//             }
-//             e.preventDefault();
-//         }
-
-//         if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && arr[1]) {
-//             if (nums.length > 0) {
-//                 let operand = parseFloat(result.textContent);
-//                 if (!isNaN(operand)) {
-//                     arr.push(operand);
-//                     console.log(arr);
-//                     result.textContent = Math.round(operate(arr[0],arr[1],arr[2]) * 1000000000)/1000000000;
-//                     arr.splice(0,3, parseFloat(result.textContent));
-//                     arr.push(e.key);
-//                 }
-//                 nums = []; 
-//             }
-//         }
-
-//         if ((e.key == "+"||e.key == "-"||e.key== "/"||e.key == "*") && arr[0] && !arr[1]){
-//             arr.push(e.key);
-//         }        
-
-//         if (e.key >= 0 && arr[0] && !arr[1]) {
-//             arr = [];
-//         }
-
-//         if (e.key === 'Escape') {
-//             arr = [];
-//             nums = [];
-//             result.textContent = 0;
-//         }
-
-
-//         if (e.key === ".") {
-//             if (nums.includes(".")) {;}
-//             else nums.push(".");
-
-//             if (result.textContent.includes(".")) {;}
-//             else result.textContent += ".";
-//         }
-
-//         if (e.key === 'Backspace' || e.key === 'Delete') {
-//             if (nums.length > 0) {
-//                 nums.pop();
-//                 result.textContent = nums.join('');
-//             }
-//                 if (!nums[0]) {
-//                 result.textContent = 0;
-//                 }
-            
-//         }
-
-//     });
 
 document.addEventListener('keydown', function(e) {
     const keyMap = {
